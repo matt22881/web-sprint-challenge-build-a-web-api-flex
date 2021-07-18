@@ -21,7 +21,14 @@ function validateProject(req, res, next) {
 
 }
 
+function validateProjectPut(req, res, next) {
+    if (!req.body.name || !req.body.description || req.body.completed === undefined) {
+        res.status(400).json({ message: "name, description, and completed status required" })
+    } else next()
+
+}
 module.exports = {
     validateProject,
-    validateProjectId
+    validateProjectId,
+    validateProjectPut
 }

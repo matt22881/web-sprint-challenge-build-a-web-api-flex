@@ -2,7 +2,7 @@
 const express = require('express')
 
 const Projects = require('./projects-model')
-const { validateProject, validateProjectId } = require('./projects-middleware')
+const { validateProject, validateProjectId, validateProjectPut } = require('./projects-middleware')
 
 const router = express.Router()
 
@@ -58,7 +58,7 @@ router.post('/', validateProject, (req, res) => {
     }
 })
 
-router.put('/:id', validateProject, validateProjectId, (req, res) => {
+router.put('/:id', validateProjectPut, validateProjectId, (req, res) => {
     Projects.update(req.params.id, req.body)
         .then(project => {
 
